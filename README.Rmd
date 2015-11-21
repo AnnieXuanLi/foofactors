@@ -4,8 +4,6 @@ output:
     variant: markdown_github
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -14,17 +12,56 @@ knitr::opts_chunk$set(
 )
 ```
 
-This is a practice package for [STAT 545](http://stat545-ubc.github.io).
+This is a the [Homework8](http://stat545-ubc.github.io/hw10_package.html) package for [STAT 545](http://stat545-ubc.github.io).
 
-This is just the demo Jenny is posting for students to consult / start with for their homework.
+This is built on the demo Jenny posted for students to consult / start with for their homework. There are two functions created by Jenny, `fbind` and `freq_out`. Two new functions that are created by Annie Li, `is_char` and `fac`, have been added to the package. 
 
 Here's how to use the `foofactors` package.
 
-
 ```{r}
-#install_github("STAT545/foofactors")
+#install_github("AnnieXuanLi/foofactors")
 library(foofactors)
+```
+
+## `fbind` 
+### Description
+Create a new factor from two existing factors, where the new factor's levels are the union of the levels of the input factors.
+
+### Examples
+```{r}
 fbind(iris$Species[c(1, 51, 101)], PlantGrowth$group[c(1, 11, 21)])
+fbind(factor(c(1,3,5)), factor(c(2,4,6)))
+fbind(factor(c("a","b","c")), factor(c("d","f","e")))
+```
+
+## `freq_out`
+### Description
+Make a frequency table for a factor
+
+### Examples
+```{r}
 freq_out(iris$Species)
 ```
+
+## `is_char`
+### Description
+Detect factors that should be character because # unique values = length
+
+### Examples
+```{r}
+is_char(factor(c("a", "b", "c", "d")))
+is_char(factor(c(1, 3, 5, 4, 1, 6)))
+```
+
+## `fac`
+### Description
+Turn a vector to a factor and set levels to the order in which they appear in the data
+
+### Examples
+```{r}
+fac(c("a", "c", "b", "e"))
+fac(c(3, 2, 5, 1, 1, 1, 6))
+fac(c("a", "c", "d", "b", "b", "c"))
+```
+
 
